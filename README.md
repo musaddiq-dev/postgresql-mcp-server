@@ -82,7 +82,31 @@ python -m postgresql_mcp_server.server
 
 ## MCP Client Configuration
 
-Use an absolute path to the installed console script. MCP servers using stdio must write protocol messages only to stdout; this server writes logs to stderr through Python logging.
+For published installs, prefer `uvx`. MCP servers using stdio must write protocol messages only to stdout; this server writes logs to stderr through Python logging.
+
+### Claude Desktop / Cursor / Windsurf / Cline
+
+Most MCP clients accept this `mcpServers` JSON shape:
+
+```json
+{
+  "mcpServers": {
+    "postgresql": {
+      "command": "uvx",
+      "args": ["mdev-postgresql-mcp-server"],
+      "env": {
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "mcp_readonly",
+        "POSTGRES_PASSWORD": "change-me",
+        "POSTGRES_DB": "your_database"
+      }
+    }
+  }
+}
+```
+
+For local development from this repository, use the installed console script path instead:
 
 ```json
 {
@@ -90,6 +114,41 @@ Use an absolute path to the installed console script. MCP servers using stdio mu
     "postgresql": {
       "command": "/absolute/path/to/postgresql-mcp-server/.venv/bin/mdev-postgresql-mcp-server",
       "args": [],
+      "env": {
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "mcp_readonly",
+        "POSTGRES_PASSWORD": "change-me",
+        "POSTGRES_DB": "your_database"
+      }
+    }
+  }
+}
+```
+
+### Claude Code CLI
+
+```bash
+claude mcp add postgresql \
+  --env POSTGRES_HOST=localhost \
+  --env POSTGRES_PORT=5432 \
+  --env POSTGRES_USER=mcp_readonly \
+  --env POSTGRES_PASSWORD=change-me \
+  --env POSTGRES_DB=your_database \
+  -- uvx mdev-postgresql-mcp-server
+```
+
+### VS Code MCP
+
+VS Code uses the same command/args/env model in its MCP configuration:
+
+```json
+{
+  "servers": {
+    "postgresql": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["mdev-postgresql-mcp-server"],
       "env": {
         "POSTGRES_HOST": "localhost",
         "POSTGRES_PORT": "5432",
