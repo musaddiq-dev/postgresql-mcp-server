@@ -27,7 +27,7 @@ A Python Model Context Protocol (MCP) server for inspecting and querying Postgre
 When published to PyPI, install or run the server like a standard Python MCP package:
 
 ```bash
-uvx postgresql-mcp-server
+uvx mdev-postgresql-mcp-server
 ```
 
 For local development from source:
@@ -71,7 +71,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO mcp_readonly
 ## Running
 
 ```bash
-postgresql-mcp-server
+mdev-postgresql-mcp-server
 ```
 
 From a local checkout before PyPI publication, run:
@@ -88,7 +88,7 @@ Use an absolute path to the installed console script. MCP servers using stdio mu
 {
   "mcpServers": {
     "postgresql": {
-      "command": "/absolute/path/to/postgresql-mcp-server/.venv/bin/postgresql-mcp-server",
+      "command": "/absolute/path/to/postgresql-mcp-server/.venv/bin/mdev-postgresql-mcp-server",
       "args": [],
       "env": {
         "POSTGRES_HOST": "localhost",
@@ -134,7 +134,7 @@ With a configured database, start the server and use your MCP client to call `li
 
 ## Distribution
 
-This repository is prepared for the common Python MCP distribution path: publish the package to PyPI, keep the `mcp-name` marker at the top of this README for MCP Registry ownership verification, and publish `server.json` metadata with the GitHub repository. After release, users should prefer `uvx postgresql-mcp-server` in local MCP client configurations.
+This repository is prepared for the common Python MCP distribution path: publish the package to PyPI, keep the `mcp-name` marker at the top of this README for MCP Registry ownership verification, and publish `server.json` metadata with the GitHub repository. After release, users should prefer `uvx mdev-postgresql-mcp-server` in local MCP client configurations.
 
 ## Security Notes
 

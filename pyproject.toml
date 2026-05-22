@@ -1,5 +1,5 @@
 [project]
-name = "postgresql-mcp-server"
+name = "mdev-postgresql-mcp-server"
 version = "0.1.0"
 description = "Model Context Protocol server for PostgreSQL database inspection and querying"
 readme = "README.md"
@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 [project.scripts]
-"postgresql-mcp-server" = "postgresql_mcp_server.server:main"
+"mdev-postgresql-mcp-server" = "postgresql_mcp_server.server:main"
 
 [project.optional-dependencies]
 dev = [
